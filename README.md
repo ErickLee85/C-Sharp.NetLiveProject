@@ -5,7 +5,7 @@ Code Summary of C#/.NET Live Project!
 I was part of a Live project for the last two weeks, where we used C# with the .NET Framework to build a full MVC Web App for a production company. The cool thing about this project was we utilized Agile methodologies and daily Scrums. I learned the logistics behind coding with other developers, utilizing version control by branching and making pull requests with master.
 
 ## CRUD Functionality
-This was a code first approach to using the entity frame work, I scaffolded my CRUD based off my Model. I added an input element to the Create view for the user to upload a photo of their item, which also had an area with an image preview as well using JS.
+This was a code first approach to using the entity frame work, I scaffolded my CRUD based off my Model.
 
 ### Model
         public class RentalItem
@@ -22,7 +22,18 @@ This was a code first approach to using the entity frame work, I scaffolded my C
 
         public Byte[] ItemPhoto { get; set; }
     }
-    
+
+## Create View
+Here the user can create an item with the option of uploading a photo from their computer, this image will be converted into a Byte[] in controller and stored in the database, where it will then be converted back to an image when displayed on the Index View. The User will also see a preview to their image, this was mainly all javascript. I used bootstrap table layout to create this form.
+
+![](img/Create.png)
+
+## Index View
+Here the Index is presented with a BootStrap Card layout, the user can search for a specific item title as well. If the user hovers over an image, two font-awesome 
+edit and delete buttons will appear, giving the user more options with that object. If the user clicks the item title, it will bring them to the details view.
+
+![](img/Index.png)
+   
 ### Controller
       using System;
       using System.Collections.Generic;
@@ -216,16 +227,7 @@ This was a code first approach to using the entity frame work, I scaffolded my C
           }
       }
       
-## Index View
-Here the Index is presented with a BootStrap Card layout, the user can search for a specific item title as well. If the user hovers over an image, two font-awesome 
-edit and delete buttons will appear, giving the user more options with that object. If the user clicks the item title, it will bring them to the details view.
 
-![](img/Index.png)
-
-## Create View
-Here the user can create an item with the option of uploading a photo from their computer, this image will be converted into a Byte[] in controller and stored in the database, where it will then be converted back to an image when displayed on the Index View. The User will also see a preview to their image, this was mainly all javascript.
-
-![](img/Create.png)
 
 ## Bug Fix from Edit Page
 If the user decided to Edit an item, if they did not re-upload the same photo, when they were redirected to the index, they would lose their original photo. 
