@@ -218,7 +218,7 @@ This was a code first approach to using the entity frame work, I scaffolded my C
       
 ## Index View
 Here the Index is presented with a BootStrap Card layout, the user can search for a specific item title as well. If the user hovers over an image, two font-awesome 
-edit and delete buttons will appear, giving the user more options with that object.
+edit and delete buttons will appear, giving the user more options with that object. If the user clicks the item title, it will bring them to the details view.
 
 ![](img/Index.png)
 
@@ -278,3 +278,5 @@ I used TempData to temporarily store their original photo in the Get Edit contro
                     rentalItem.ItemPhoto = previousEntry.ItemPhoto;
                 }
 
+## Live Project Conclusion
+I utilized the Model View Controller architecture to create a fully functioning Web App. I really grasped the concept of using Entity database with my model, and how to control my views with the business logic inside my controller. Also using C# inside an HTML document, which is called Razor markup, is really beneficial, you get way more functionality out of your code. I'm also glad I found a bug and was able to fix it, I know bugs are inevitable for every coder. This was a lot of fun and I do feel like it helped me grow as a developer!
