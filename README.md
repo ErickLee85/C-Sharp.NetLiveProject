@@ -217,6 +217,6 @@ This was a code first approach to using the entity frame work, I scaffolded my C
       }
       
 ## Index View
-![](img/Screenshot(100).png)
+![](img/Index.png)
 
 
