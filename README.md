@@ -217,6 +217,64 @@ This was a code first approach to using the entity frame work, I scaffolded my C
       }
       
 ## Index View
-![](img/Screenshot(100).png)
+Here the Index is presented with a BootStrap Card layout, the user can search for a specific item title as well. If the user hovers over an image, two font-awesome 
+edit and delete buttons will appear, giving the user more options with that object.
 
+![](img/Index.png)
+
+## Create View
+Here the user can create an item with the option of uploading a photo from their computer, this image will be converted into a Byte[] in controller and stored in the database, where it will then be converted back to an image when displayed on the Index View. The User will also see a preview to their image, this was mainly all javascript.
+
+![](img/Create.png)
+
+## Bug Fix from Edit Page
+If the user decided to Edit an item, if they did not re-upload the same photo, when they were redirected to the index, they would lose their original photo. 
+I used TempData to temporarily store their original photo in the Get Edit controller, and then utilized TempData in the Post Edit controller to fix the bug.
+
+###
+                // GET: Rent/RentalItem/Edit/5
+        public ActionResult Edit(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            RentalItem rentalItem = db.RentalItems.Find(id);
+
+
+
+            if (rentalItem == null)
+            {
+                return HttpNotFound();
+            }
+
+            TempData["previous"] = rentalItem;
+
+            return View(rentalItem);
+        }
+
+        // POST: Rent/RentalItem/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "RentalItemId,Item,ItemDescription,PickUpDate,ReturnDate, ItemPhoto")] RentalItem rentalItem, HttpPostedFileBase
+        ImageData)
+        {
+            if (ModelState.IsValid)
+            {
+                RentalItem previousEntry = TempData["previous"] == null ? db.RentalItems.Find(rentalItem.RentalItemId) :
+                    (RentalItem)TempData["previous"];
+
+                if (ImageData != null)
+                {
+                    rentalItem.ItemPhoto = ConvertImageToByte(ImageData);
+                    db.RentalItems.Add(rentalItem);
+                }
+
+                //If there is no photo uploaded, this is what keeps the original photo in the database.
+                if (ImageData == null && rentalItem.ItemPhoto == null && previousEntry.ItemPhoto != null)
+                {
+                    rentalItem.ItemPhoto = previousEntry.ItemPhoto;
+                }
 
