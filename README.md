@@ -217,6 +217,8 @@ This was a code first approach to using the entity frame work, I scaffolded my C
       }
       
 ## Index View
+Here the Index is presented with a BootStrap Card layout, the user can search for a specific item title as well. If the user hovers over an image, two font-awesome 
+edit and delete buttons will appear, giving the user more options with that object.
 ![](img/Index.png)
 
 
